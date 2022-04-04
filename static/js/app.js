@@ -32,8 +32,8 @@ function optionChanged(selectedID){
        {
           panelDisplay.append("p").text(`${item[0]}: ${item[1]}`)
        });
- 
-    // BAR CHART
+
+//Bar
  
     // Filter sample array data
     const idSample = data.samples.filter(item => parseInt(item.id) == selectedID);
@@ -71,8 +71,8 @@ function optionChanged(selectedID){
  
        // Plot using Plotly
        Plotly.newPlot('bar', [trace], layout,  {responsive: true});    
-       
- // BUBBLE CHART
+
+//Bubble
  
  // Remove Sample value and otuID from individual
  var sampleValue1 =idSample[0].sample_values;
@@ -98,12 +98,10 @@ function optionChanged(selectedID){
     width: 1800
     };
     
- // Plot
  Plotly.newPlot('bubble', [trace1], layout1);
  
- //GAUGE CHART
 
- // Gauge Chart to plot weekly washing frequency 
+ // Gauge Chart
  const gaugeDisplay = d3.select("#gauge");
  gaugeDisplay.html(""); 
  const washFreq = idMetadata[0].wfreq;
@@ -142,7 +140,6 @@ function optionChanged(selectedID){
                    margin: { t: 0, b: 0 }, 
                     };
  
- // Plot
   Plotly.newPlot('gauge', gaugeData, gaugeLayout); 
  
  });
