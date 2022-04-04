@@ -35,7 +35,7 @@ function optionChanged(selectedID){
  
     // BAR CHART
  
-    // Filter sample array data for the selected ID
+    // Filter sample array data
     const idSample = data.samples.filter(item => parseInt(item.id) == selectedID);
     
     // Slice top 10 sample values
@@ -57,9 +57,9 @@ function optionChanged(selectedID){
        orientation: "h",
        text:  otuLabels,
        marker: {
-          color: 'rgb(154, 140, 152)',
+          color: '#B3CEE5',
           line: {
-             width: 3
+             width: 2
          }
         }
        },
@@ -101,14 +101,14 @@ function optionChanged(selectedID){
  // Plot
  Plotly.newPlot('bubble', [trace1], layout1);
  
- // BONUS: GAUGE CHART
+ //GAUGE CHART
 
  // Gauge Chart to plot weekly washing frequency 
- const guageDisplay = d3.select("#gauge");
- guageDisplay.html(""); 
+ const gaugeDisplay = d3.select("#gauge");
+ gaugeDisplay.html(""); 
  const washFreq = idMetadata[0].wfreq;
  
- const guageData = [
+ const gaugeData = [
     {
       domain: { x: [0, 1], y: [0, 1] },
       value: washFreq,
@@ -116,20 +116,21 @@ function optionChanged(selectedID){
       type: "indicator",
       mode: "gauge+number",     
        gauge: {
-       axis: { range: [0,9] },
-       bar: { color: "#f2e9e4" },
+       axis: { range: [0,10] },
+       bar: { color: "#28F996" },
        steps: [
-          { range: [0, 1], color: "#e5d5d0" },
-          { range: [1, 2], color: "#dbc7c2" },
-          { range: [2, 3], color: "#d2b9b4" },
-          { range: [3, 4], color: "#c9ada7" },
-          { range: [4, 5], color: "#ac9899" },
-          { range: [5, 6], color: "#8a7e88" },
-          { range: [6, 7], color: "#7d7482" },
-          { range: [7, 8], color: "#706a7b" },
-          { range: [8, 9], color: "#4a4e69" }
-                
-        ],
+        { range: [0, 1], color: "#4caf50" },
+        { range: [1, 2], color: "#449e48" },
+        { range: [2, 3], color: "#3d8c40" },
+        { range: [3, 4], color: "#357a38" },
+        { range: [4, 5], color: "#2e6930" },
+        { range: [5, 6], color: "#265828" },
+        { range: [6, 7], color: "#1e4620" },
+        { range: [7, 8], color: "#173518" },
+        { range: [8, 9], color: "#0f2310" },
+        { range: [9, 10], color: "#081108" }
+       
+                ],
        threshold: {
           value: washFreq
         }
@@ -141,13 +142,13 @@ function optionChanged(selectedID){
                    margin: { t: 0, b: 0 }, 
                     };
  
- // Plot using Plotly
-  Plotly.newPlot('gauge', guageData, gaugeLayout); 
+ // Plot
+  Plotly.newPlot('gauge', gaugeData, gaugeLayout); 
  
  });
  }
  
- // Initial test starts at ID 940
+ //starts at ID 940
  optionChanged(940);
  
  // Event on change takes the value and calls the function during dropdown selection
